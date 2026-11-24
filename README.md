@@ -21,6 +21,7 @@ Settings come from environment variables or a `.env` file
 | Variable       | Default                                                            |
 | -------------- | ------------------------------------------------------------------ |
 | `DATABASE_URL` | `postgresql+psycopg://postgres:postgres@localhost:5433/noor_foods` |
+| `DEBUG`        | `false`                                                            |
 
 ## Run
 
@@ -47,4 +48,11 @@ uv run python
 
 - `src/noor_foods_api/config.py`: settings, read once and cached
 - `src/noor_foods_api/database.py`: the cached engine and a session per request
-- `src/noor_foods_api/main.py`: the FastAPI app and `GET /`
+- `src/noor_foods_api/models.py`: database tables and API request/response models
+- `src/noor_foods_api/crud.py`: database read/write operations
+- `src/noor_foods_api/dependencies.py`: shared session and product lookup
+- `src/noor_foods_api/routers/`: category and product endpoints
+- `src/noor_foods_api/main.py`: the FastAPI app, error handling, and request logs
+
+The API exposes `GET /categories`, `GET /categories/{category_id}`, and
+product list, detail, create, update, and delete routes under `/products`.
